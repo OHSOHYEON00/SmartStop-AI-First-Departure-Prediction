@@ -13,8 +13,8 @@ const Header = ({
       <BackButton link="/" styles="p-0" height={35} width={35} />
       {bIcon && (
         <img
-          className="pb-4"
           src={bIcon}
+          className="mt-4"
           width={100}
           height={100}
           alt={"header background"}

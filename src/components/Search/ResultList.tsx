@@ -1,6 +1,7 @@
 import BusIcon from "components/Common/Icon/BusIcon";
 import React, { useContext } from "react";
 import { SearchContext } from "routes/search";
+import { TStop } from "utils/types";
 
 const articleStyle =
   "border-disabled border-[1.5px] rounded-xl flex px-4.5 py-3.25";
@@ -33,15 +34,7 @@ const BusItem = ({
   );
 };
 
-const StopItem = ({
-  title,
-  number,
-  description,
-}: {
-  title: string;
-  number: string;
-  description: string;
-}) => {
+export const StopItem = ({ title, number, description }: TStop) => {
   return (
     <article className={`${articleStyle} flex-col`}>
       <p className="text-sm font-medium">{title}</p>
@@ -85,7 +78,7 @@ const busTemp = [
   },
 ];
 
-const stopTemp = [
+export const stopTemp = [
   {
     title: "수원고등법원.수원고등검찰청.광교호수공원",
     number: "04270",

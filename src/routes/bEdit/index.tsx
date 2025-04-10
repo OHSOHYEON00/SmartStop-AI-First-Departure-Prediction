@@ -19,7 +19,11 @@ const BookmarkEdit = () => {
         bIcon={bEditStarIcon}
       />
       <section className="flex-1 py-5 px-6  overflow-y-scroll max-h-[calc(100vh-218px)]">
-        <Tag content={<>카테고리 목록</>} />
+        <Tag
+          content={
+            <span className="text-tag font-semibold">카테고리 목록</span>
+          }
+        />
         <BookmarkList />
       </section>
     </div>
@@ -28,6 +32,6 @@ const BookmarkEdit = () => {
 
 export default BookmarkEdit;
 
-export const Route = createFileRoute("/b-edit/")({
+export const Route = createFileRoute("/bEdit/")({
   component: BookmarkEdit,
 });

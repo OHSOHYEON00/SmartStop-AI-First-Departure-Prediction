@@ -13,7 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as SearchIndexImport } from './routes/search/index'
-import { Route as BEditIndexImport } from './routes/b-edit/index'
+import { Route as BEditIndexImport } from './routes/bEdit/index'
+import { Route as BEditBIdSEditImport } from './routes/bEdit/$bId/sEdit'
 
 // Create/Update Routes
 
@@ -30,8 +31,14 @@ const SearchIndexRoute = SearchIndexImport.update({
 } as any)
 
 const BEditIndexRoute = BEditIndexImport.update({
-  id: '/b-edit/',
-  path: '/b-edit/',
+  id: '/bEdit/',
+  path: '/bEdit/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BEditBIdSEditRoute = BEditBIdSEditImport.update({
+  id: '/bEdit/$bId/sEdit',
+  path: '/bEdit/$bId/sEdit',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,10 +53,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/b-edit/': {
-      id: '/b-edit/'
-      path: '/b-edit'
-      fullPath: '/b-edit'
+    '/bEdit/': {
+      id: '/bEdit/'
+      path: '/bEdit'
+      fullPath: '/bEdit'
       preLoaderRoute: typeof BEditIndexImport
       parentRoute: typeof rootRoute
     }
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchIndexImport
       parentRoute: typeof rootRoute
     }
+    '/bEdit/$bId/sEdit': {
+      id: '/bEdit/$bId/sEdit'
+      path: '/bEdit/$bId/sEdit'
+      fullPath: '/bEdit/$bId/sEdit'
+      preLoaderRoute: typeof BEditBIdSEditImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -67,29 +81,32 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/b-edit': typeof BEditIndexRoute
+  '/bEdit': typeof BEditIndexRoute
   '/search': typeof SearchIndexRoute
+  '/bEdit/$bId/sEdit': typeof BEditBIdSEditRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/b-edit': typeof BEditIndexRoute
+  '/bEdit': typeof BEditIndexRoute
   '/search': typeof SearchIndexRoute
+  '/bEdit/$bId/sEdit': typeof BEditBIdSEditRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/b-edit/': typeof BEditIndexRoute
+  '/bEdit/': typeof BEditIndexRoute
   '/search/': typeof SearchIndexRoute
+  '/bEdit/$bId/sEdit': typeof BEditBIdSEditRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/b-edit' | '/search'
+  fullPaths: '/' | '/bEdit' | '/search' | '/bEdit/$bId/sEdit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/b-edit' | '/search'
-  id: '__root__' | '/' | '/b-edit/' | '/search/'
+  to: '/' | '/bEdit' | '/search' | '/bEdit/$bId/sEdit'
+  id: '__root__' | '/' | '/bEdit/' | '/search/' | '/bEdit/$bId/sEdit'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,12 +114,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BEditIndexRoute: typeof BEditIndexRoute
   SearchIndexRoute: typeof SearchIndexRoute
+  BEditBIdSEditRoute: typeof BEditBIdSEditRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BEditIndexRoute: BEditIndexRoute,
   SearchIndexRoute: SearchIndexRoute,
+  BEditBIdSEditRoute: BEditBIdSEditRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/b-edit/",
-        "/search/"
+        "/bEdit/",
+        "/search/",
+        "/bEdit/$bId/sEdit"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/b-edit/": {
-      "filePath": "b-edit/index.tsx"
+    "/bEdit/": {
+      "filePath": "bEdit/index.tsx"
     },
     "/search/": {
       "filePath": "search/index.tsx"
+    },
+    "/bEdit/$bId/sEdit": {
+      "filePath": "bEdit/$bId/sEdit.tsx"
     }
   }
 }

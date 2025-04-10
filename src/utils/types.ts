@@ -15,3 +15,14 @@ export enum LS_NAME {
   BOOKMARK_LIST = "BOOKMARK_LIST",
   RECENT_SEARCH_LIST = "RECENT_SEARCH_LIST",
 }
+
+export interface TStop {
+  title: string;
+  number: string;
+  description?: string;
+}
+export interface TBookmark {
+  color: string;
+  name: string;
+  stops?: TStop[];
+}
